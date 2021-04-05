@@ -203,13 +203,6 @@ var mouseover = function() {
   .style("opacity", 1)
 };
 
-// var mousemove = function() {
-//  Tooltip
-//   .html("The X, Y values are : <br> " + (xLinearScale.invert(+d3.mouse(this)[0]).toFixed(2) +", " +(yLinearScale.invert(+d3.mouse(this)[1]).toFixed(2))))
-//   .style("left", (+d3.mouse(this)[0]+70) + "px")
-//   .style("top", (+d3.mouse(this)[1]) + "px")
-// };
-
 var mouseleave = function() {
  Tooltip
   .style("opacity", 0);
@@ -224,7 +217,7 @@ scatterchart.selectAll("circle")
   .on("mouseleave", mouseleave);
 
 
-//3 xlabel make
+//3 xlabel make with mouse in/out effect
   chartGroup.append('g')
     .append("text")             
     .attr("transform",
@@ -232,7 +225,14 @@ scatterchart.selectAll("circle")
                   (chartHeight + margin.top) + ")")
     .style("text-anchor", "middle")
     .classed("xlabel", true)
-    .text("Age(Median)");
+    .text("Age(Median)")
+    .on('mouseover', function () {
+      d3.select(this).style('fill', 'blue')
+      .style('font-weight','bold')})      
+    .on('mouseout', function () { 
+      d3.select(this).style('fill', 'black')
+      .style('font-weight','normal')});
+ 
     
 
   chartGroup.append('g')
@@ -242,8 +242,14 @@ scatterchart.selectAll("circle")
                   (chartHeight + margin.top) + ")")
     .style("text-anchor", "middle")
     .classed("xlabel", true)
-    .text("Income(Household Median)");
-    
+    .text("Income(Household Median)")
+    .on('mouseover', function () {
+      d3.select(this).style('fill', 'blue')
+      .style('font-weight','bold')})      
+    .on('mouseout', function () { 
+      d3.select(this).style('fill', 'black')
+      .style('font-weight','normal')});
+ 
 
   chartGroup.append('g')
     .append("text")             
@@ -252,11 +258,17 @@ scatterchart.selectAll("circle")
                   (chartHeight + margin.top) + ")")
     .style("text-anchor", "middle")
     .classed("xlabel", true)
-    .text("Poverty(%)");
-    
+    .text("Poverty(%)")
+    .on('mouseover', function () {
+      d3.select(this).style('fill', 'blue')
+      .style('font-weight','bold')})      
+    .on('mouseout', function () { 
+      d3.select(this).style('fill', 'black')
+      .style('font-weight','normal')});
+ 
 
 
-//3 ylabel make
+//3 ylabel make with mouse in/out effect
   chartGroup.append('g')
     .append("text")
     .attr("transform", "rotate(-90)")
@@ -265,8 +277,14 @@ scatterchart.selectAll("circle")
     .attr("dy", "1em")
     .style("text-anchor", "middle")
     .classed("ylabel", true)
-    .text("Smokes(%)");
-    
+    .text("Smokes(%)")
+    .on('mouseover', function () {
+      d3.select(this).style('fill', 'blue')
+      .style('font-weight','bold')})      
+    .on('mouseout', function () { 
+      d3.select(this).style('fill', 'black')
+      .style('font-weight','normal')});
+ 
 
   chartGroup.append('g')
     .append("text")
@@ -276,7 +294,14 @@ scatterchart.selectAll("circle")
     .attr("dy", "1em")
     .style("text-anchor", "middle")
     .classed("ylabel", true)
-    .text("Obesity(%)");
+    .text("Obesity(%)")
+    .on('mouseover', function () {
+      d3.select(this).style('fill', 'blue')
+      .style('font-weight','bold')})      
+    .on('mouseout', function () { 
+      d3.select(this).style('fill', 'black')
+      .style('font-weight','normal')});
+ 
      
 
   chartGroup.append('g')
@@ -287,14 +312,19 @@ scatterchart.selectAll("circle")
     .attr("dy", "1em")
     .style("text-anchor", "middle")
     .classed("ylabel", true)
-    .text("Healthcare(Lack %)");
+    .text("Healthcare(Lack %)")
+    .on('mouseover', function () {
+         d3.select(this).style('fill', 'blue')
+         .style('font-weight','bold')})      
+    .on('mouseout', function () { 
+         d3.select(this).style('fill', 'black')
+         .style('font-weight','normal')});
     
-
 
 //pickup the clicked xlabel
 d3.selectAll(".xlabel").on("click", function() {
     var clickedItem = d3.select(this);
-        clickedItem.style("color", "blue");     
+        // clickedItem.style("color", "blue");     
     var ItemText = clickedItem.text();
     var xlabel = ItemText.toLowerCase().split("(");
         console.log(xlabel[0]);
