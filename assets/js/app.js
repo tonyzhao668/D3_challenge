@@ -63,8 +63,12 @@ var smokes = "smokes";
 //chart initiation as default
 var ax = "age";
 var by = "smokes";
-draw(ax, by);
+var counter = 0 ;
 
+// var axpre = "poverty";
+// var bypre = "healthcare";
+
+draw(ax, by);
 
 //chart drawing function
 function draw(a, b) {
@@ -136,8 +140,8 @@ function draw(a, b) {
           .attr("in", "SourceGraphic");
  
 //Scatter ball chart maker
+if (counter === 0) {
   scatterchart.append('g')
-    //.selectAll("dot")
     .selectAll("circle")
     .data(importedData)
     .enter()
@@ -147,8 +151,6 @@ function draw(a, b) {
     .attr("cy", (d) => yLinearScale(+ eval(`d.${by}`)))
     .attr("r", r)
     .classed("chart", true) 
-    .transition()
-    .duration(200)
     .style("fill", "#0400FF")
     .style("filter", "url(#drop-shadow)")
     .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
@@ -168,15 +170,50 @@ function draw(a, b) {
     
 //left yAxis
   scatterchart.append("g")
-    .classed("axis", true)
+    .classed("yaxis", true)
     .call(leftAxis);
 
 //bottom xAxis
   scatterchart.append("g")
-    .classed("axis", true)
+    .classed("xaxis", true)
     .attr("transform", "translate(0, " + chartHeight + ")")
-    .call(bottomAxis);
+    .call(bottomAxis)
 
+} else {
+ 
+    //update with animation effect
+  scatterchart
+    .selectAll("circle")
+    .data(importedData)
+    .transition()
+    .delay(function(d,i){return(i*3)})
+    .duration(1000)
+    .attr("cx", (d) => xLinearScale(+ eval(`d.${ax}`)))
+    .attr("cy", (d) => yLinearScale(+ eval(`d.${by}`)))
+    .attr("r", r);
+    
+//update states' abbr text on each ball
+  scatterchart
+    .selectAll("text")
+    .data(importedData) 
+    .transition()
+    .delay(function(d,i){return(i*3)})
+    .duration(1000) 
+    .attr("dx", (d) => xLinearScale(+ eval(`d.${ax}`))-r/1.5)
+    .attr("dy", (d) => yLinearScale(+ eval(`d.${by}`))+ r/3)
+    
+    .text((d) => d.abbr);
+    
+//update left yAxis
+  scatterchart.select(".yaxis")
+    .call(leftAxis);
+
+//update bottom xAxis
+  scatterchart.select(".xaxis")
+    .attr("transform", "translate(0, " + chartHeight + ")")
+    .call(bottomAxis)
+
+}
 };
 
 // create a tooltip
@@ -231,9 +268,7 @@ scatterchart.selectAll("circle")
       .style('font-weight','bold')})      
     .on('mouseout', function () { 
       d3.select(this).style('fill', 'black')
-      .style('font-weight','normal')});
- 
-    
+      .style('font-weight','normal')}); 
 
   chartGroup.append('g')
     .append("text")             
@@ -250,7 +285,6 @@ scatterchart.selectAll("circle")
       d3.select(this).style('fill', 'black')
       .style('font-weight','normal')});
  
-
   chartGroup.append('g')
     .append("text")             
     .attr("transform",
@@ -266,7 +300,6 @@ scatterchart.selectAll("circle")
       d3.select(this).style('fill', 'black')
       .style('font-weight','normal')});
  
-
 
 //3 ylabel make with mouse in/out effect
   chartGroup.append('g')
@@ -285,7 +318,6 @@ scatterchart.selectAll("circle")
       d3.select(this).style('fill', 'black')
       .style('font-weight','normal')});
  
-
   chartGroup.append('g')
     .append("text")
     .attr("transform", "rotate(-90)")
@@ -302,8 +334,6 @@ scatterchart.selectAll("circle")
       d3.select(this).style('fill', 'black')
       .style('font-weight','normal')});
  
-     
-
   chartGroup.append('g')
     .append("text")
     .attr("transform", "rotate(-90)")
@@ -330,11 +360,11 @@ d3.selectAll(".xlabel").on("click", function() {
         console.log(xlabel[0]);
         scatterchart.transition().duration(200);
         Tooltip.html("");
-        scatterchart.html("");
+        counter += 1;
+        console.log(counter);
         draw(xlabel[0], by);
         scatterchart.selectAll("circle")
           .on("mouseover", mouseover)
-        // .on("mousemove", mousemove)
           .on("mouseleave", mouseleave)
 
       });
@@ -349,15 +379,13 @@ d3.selectAll(".ylabel").on("click", function() {
         console.log(ylabel[0]);
         scatterchart.transition().duration(200);
         Tooltip.html("");
-        scatterchart.html("");
+        counter += 1;
+        console.log(counter);
         draw(ax, ylabel[0]);
         scatterchart.selectAll("circle")
           .on("mouseover", mouseover)
-        // .on("mousemove", mousemove)
           .on("mouseleave", mouseleave)
       });
-
-
 
 //Error Catcher
 }).catch(function(error) {
