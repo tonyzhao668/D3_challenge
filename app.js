@@ -232,7 +232,7 @@ var mouseover = function() {
   .style("opacity", 1)
   .html("The X, Y values are : <br> " + (xLinearScale.invert(+d3.mouse(this)[0]).toFixed(2) +
       ", " +(yLinearScale.invert(+d3.mouse(this)[1]).toFixed(2))))
-  .style("left", (+d3.mouse(this)[0] + 70) + "px")
+  .style("left", (+d3.mouse(this)[0] + 90) + "px")
   .style("top", (+d3.mouse(this)[1]) + "px");
  d3.select(this)
   .style("stroke", "red")
@@ -250,7 +250,6 @@ var mouseleave = function() {
 
 scatterchart.selectAll("circle")
   .on("mouseover", mouseover)
-  // .on("mousemove", mousemove)
   .on("mouseleave", mouseleave);
 
 
