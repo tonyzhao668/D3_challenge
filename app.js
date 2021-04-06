@@ -177,7 +177,19 @@ if (counter === 0) {
   scatterchart.append("g")
     .classed("xaxis", true)
     .attr("transform", "translate(0, " + chartHeight + ")")
-    .call(bottomAxis)
+    .call(bottomAxis);
+
+//add title
+  scatterchart.append("text")
+    .attr("x", (chartWidth / 2))             
+    .attr("y", 0 - (margin.top / 2))
+    .attr("text-anchor", "middle")  
+    .style("font-size", "30px") 
+    .style('fill', 'blue')
+    .style("text-decoration", "underline") 
+    .classed("title", true) 
+    .style('font-weight','bold')
+    .text(`${ax} vs. ${by}`);
 
 } else {
  
@@ -201,9 +213,9 @@ if (counter === 0) {
     .duration(1000) 
     .attr("dx", (d) => xLinearScale(+ eval(`d.${ax}`))-r/1.5)
     .attr("dy", (d) => yLinearScale(+ eval(`d.${by}`))+ r/3)
-    
     .text((d) => d.abbr);
-    
+
+
 //update left yAxis
   scatterchart.select(".yaxis")
     .call(leftAxis);
@@ -211,7 +223,22 @@ if (counter === 0) {
 //update bottom xAxis
   scatterchart.select(".xaxis")
     .attr("transform", "translate(0, " + chartHeight + ")")
-    .call(bottomAxis)
+    .call(bottomAxis);
+
+//update title
+scatterchart.select(".title")
+    // .attr("x", (width / 2))             
+    // .attr("y", 0 - (margin.top / 2))
+    // .attr("text-anchor", "middle")  
+    // .style("font-size", "16px") 
+    // .style("text-decoration", "underline") 
+    // .style('font-weight','bold')
+    .data(importedData)
+    .transition()
+    .delay(function(d,i){return(i*3)})
+    .duration(1000)
+    .text(`${ax} vs. ${by}`);
+    
 
 }
 };
