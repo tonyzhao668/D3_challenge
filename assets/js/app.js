@@ -49,8 +49,6 @@ d3.csv("data.csv").then(function(importedData) {
 //   console.log(obesities);
 //   console.log(smokeses);
 
-//chartGroup.html("");
-//var d = importedData;
 
 var age = "age";
 var poverty = "poverty";
@@ -65,8 +63,6 @@ var ax = "age";
 var by = "smokes";
 var counter = 0 ;
 
-// var axpre = "poverty";
-// var bypre = "healthcare";
 
 draw(ax, by);
 
@@ -103,13 +99,11 @@ function draw(a, b) {
   xLinearScale = d3.scaleLinear()
     .domain(d3.extent(importedData.map(item => + eval(`item.${ax}`))))
     .range([0, chartWidth]);
-//   importedData.forEach(item =>console.log(xLinearScale( +item.age)));
 
 //yScale
   yLinearScale = d3.scaleLinear()   
     .domain([0, d3.max(importedData.map(item => + eval(`item.${by}`)))])
     .range([chartHeight, 0]);
-//   importedData.forEach(item =>console.log(yLinearScale( +item.smokes)));
 
 //axies initiation
     var bottomAxis = d3.axisBottom(xLinearScale);
@@ -133,7 +127,6 @@ function draw(a, b) {
       .attr("result", "offsetBlur");
 
     var feMerge = filter.append("feMerge");
-
       feMerge.append("feMergeNode")
           .attr("in", "offsetBlur");
       feMerge.append("feMergeNode")
@@ -227,12 +220,6 @@ if (counter === 0) {
 
 //update title
 scatterchart.select(".title")
-    // .attr("x", (width / 2))             
-    // .attr("y", 0 - (margin.top / 2))
-    // .attr("text-anchor", "middle")  
-    // .style("font-size", "16px") 
-    // .style("text-decoration", "underline") 
-    // .style('font-weight','bold')
     .data(importedData)
     .transition()
     .delay(function(d,i){return(i*3)})
@@ -253,7 +240,7 @@ var Tooltip = d3.select("#scatter").append("div")
   .style("border-radius", "5px")
   .style("padding", "5px");
 
-// // Three function that change the tooltip when user hover / move / leave a cell
+// // Three function that change the tooltip when user hover / leave a cell
 var mouseover = function() {
  Tooltip
   .style("opacity", 1)
@@ -379,8 +366,7 @@ scatterchart.selectAll("circle")
 
 //pickup the clicked xlabel
 d3.selectAll(".xlabel").on("click", function() {
-    var clickedItem = d3.select(this);
-        // clickedItem.style("color", "blue");     
+    var clickedItem = d3.select(this);    
     var ItemText = clickedItem.text();
     var xlabel = ItemText.toLowerCase().split("(");
         console.log(xlabel[0]);
