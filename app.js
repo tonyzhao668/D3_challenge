@@ -63,7 +63,6 @@ var ax = "age";
 var by = "smokes";
 var counter = 0 ;
 
-
 draw(ax, by);
 
 //chart drawing function
@@ -123,7 +122,7 @@ function draw(a, b) {
     filter.append("feOffset")
       .attr("in", "blur")
       .attr("dx", 2)
-      .attr("dy", 2)
+      .attr("dy", 3)
       .attr("result", "offsetBlur");
 
     var feMerge = filter.append("feMerge");
@@ -148,6 +147,8 @@ if (counter === 0) {
     .style("filter", "url(#drop-shadow)")
     .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
     
+
+
 //states' abbr text on each ball
   scatterchart.append('g')
     .selectAll("text")
