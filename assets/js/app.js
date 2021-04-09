@@ -34,7 +34,7 @@ var yLinearScale;
 var scatterchart = chartGroup.append('g');
 
 d3.csv("data.csv").then(function(importedData) {
-//console.log(importedData)
+console.log(importedData)
 //   var abbrs = importedData.map(item => +item.abbr);
 //   var poverties = importedData.map(item => +item.poverty);
 //   var ages = importedData.map(item => +item.age);
@@ -62,7 +62,6 @@ var smokes = "smokes";
 var ax = "age";
 var by = "smokes";
 var counter = 0 ;
-
 
 draw(ax, by);
 
@@ -123,7 +122,7 @@ function draw(a, b) {
     filter.append("feOffset")
       .attr("in", "blur")
       .attr("dx", 2)
-      .attr("dy", 2)
+      .attr("dy", 3)
       .attr("result", "offsetBlur");
 
     var feMerge = filter.append("feMerge");
@@ -148,6 +147,8 @@ if (counter === 0) {
     .style("filter", "url(#drop-shadow)")
     .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
     
+
+
 //states' abbr text on each ball
   scatterchart.append('g')
     .selectAll("text")
@@ -191,8 +192,11 @@ if (counter === 0) {
     .selectAll("circle")
     .data(importedData)
     .transition()
+    // .ease(d3.easeLinear)
+    .ease(d3.easeBounce)
+    // .ease(d3.easeSin)
     .delay(function(d,i){return(i*3)})
-    .duration(1000)
+    .duration(2000)
     .attr("cx", (d) => xLinearScale(+ eval(`d.${ax}`)))
     .attr("cy", (d) => yLinearScale(+ eval(`d.${by}`)))
     .attr("r", r);
@@ -202,8 +206,11 @@ if (counter === 0) {
     .selectAll("text")
     .data(importedData) 
     .transition()
+    // .ease(d3.easeLinear)
+    .ease(d3.easeBounce)
+    // .ease(d3.easeSin)
     .delay(function(d,i){return(i*3)})
-    .duration(1000) 
+    .duration(2000) 
     .attr("dx", (d) => xLinearScale(+ eval(`d.${ax}`))-r/1.5)
     .attr("dy", (d) => yLinearScale(+ eval(`d.${by}`))+ r/3)
     .text((d) => d.abbr);
@@ -244,8 +251,8 @@ var Tooltip = d3.select("#scatter").append("div")
 var mouseover = function() {
  Tooltip
   .style("opacity", 1)
-  .html("The X, Y values are : <br> " + (xLinearScale.invert(+d3.mouse(this)[0]).toFixed(2) +
-      ", " +(yLinearScale.invert(+d3.mouse(this)[1]).toFixed(2))))
+  .html(`${ax}` + " : " + (xLinearScale.invert(+d3.mouse(this)[0]).toFixed(2)) + "<br>" +
+       `${by}`+ " : " + (yLinearScale.invert(+d3.mouse(this)[1]).toFixed(2)))
   .style("left", (+d3.mouse(this)[0] + 90) + "px")
   .style("top", (+d3.mouse(this)[1]) + "px");
  d3.select(this)

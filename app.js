@@ -34,7 +34,7 @@ var yLinearScale;
 var scatterchart = chartGroup.append('g');
 
 d3.csv("data.csv").then(function(importedData) {
-//console.log(importedData)
+console.log(importedData)
 //   var abbrs = importedData.map(item => +item.abbr);
 //   var poverties = importedData.map(item => +item.poverty);
 //   var ages = importedData.map(item => +item.age);
@@ -251,8 +251,8 @@ var Tooltip = d3.select("#scatter").append("div")
 var mouseover = function() {
  Tooltip
   .style("opacity", 1)
-  .html("The X, Y values are : <br> " + (xLinearScale.invert(+d3.mouse(this)[0]).toFixed(2) +
-      ", " +(yLinearScale.invert(+d3.mouse(this)[1]).toFixed(2))))
+  .html(`${ax}` + " : " + (xLinearScale.invert(+d3.mouse(this)[0]).toFixed(2)) + "<br>" +
+       `${by}`+ " : " + (yLinearScale.invert(+d3.mouse(this)[1]).toFixed(2)))
   .style("left", (+d3.mouse(this)[0] + 90) + "px")
   .style("top", (+d3.mouse(this)[1]) + "px");
  d3.select(this)
