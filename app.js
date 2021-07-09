@@ -237,6 +237,7 @@ scatterchart.select(".title")
 }
 };
 
+
 // create a tooltip
 var Tooltip = d3.select("#scatter").append("div")  
   .style("opacity", 0)
@@ -259,6 +260,7 @@ var mouseover = function() {
   .style("stroke", "red")
   .style("stroke-width", 3)
   .style("opacity", 1)
+ 
 };
 
 var mouseleave = function() {
@@ -405,6 +407,7 @@ d3.selectAll(".ylabel").on("click", function() {
           .on("mouseover", mouseover)
           .on("mouseleave", mouseleave)
       });
+  
 
 //Error Catcher
 }).catch(function(error) {

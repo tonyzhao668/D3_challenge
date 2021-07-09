@@ -1,43 +1,51 @@
-# D3 Homework - Data Journalism and D3
+# D3 - Data Journalism and D3
 
-Finished on 05/04/2021 by Tony Zhao /DBCUWA
-* Each basic and advanced bonus requirment fufilled and tested running well;
-* And the tooltip and shadow effects added;
-* For each x/y label mouse in/out effects added; 
-* Charts' view change by click on any X or Y label;
-* Totally 6 variables (3 for each X and Y axis), can be shown in any (x,y) combination;
-* Each necessary file has been added into my root directory;
-* The result duly pushed into my github.com/tonyzhao668/D3_challenge repo;
-* The HTML running well with Live Server extention on VS Code;
-* Thank you very much for the homework design, a lot of challenges involved;
-* Thank you for your review and comments and enjoy it;
-* Details as follows:
+Finished on 05/04/2021 by Tony Zhao
 
+![Newsroom](https://media.giphy.com/media/v2xIous7mnEYg/giphy.gif)
 
-## My Task Done!
+## Background
 
+Analyzing the current trends shaping people's lives, as well as creating charts, graphs, and interactive elements to help readers understand the findings.
 
-You need to create a scatter plot between two of the data variables such as `Healthcare vs. Poverty` or `Smokers vs. Age`.
+To find out the first story idea by sifting through information from the U.S. Census Bureau and the Behavioral Risk Factor Surveillance System.
 
-Using the D3 techniques create a scatter plot that represents each state with circle elements. 
+The data set included is based on 2014 ACS 1-year estimates: [https://factfinder.census.gov/faces/nav/jsf/pages/searchresults.xhtml](https://factfinder.census.gov/faces/nav/jsf/pages/searchresults.xhtml).
+
+## The Task
+
+### step 1:
+
+![4-scatter](Images/4-scatter.jpg)
+
+To create a scatter plot between two of the data variables such as `Healthcare vs. Poverty` or `Smokers vs. Age`.
+
+Code this graphic in the `app.js` pull in the data from `data.csv` by using the `d3.csv` function. 
 
 * Include state abbreviations in the circles.
 
-* Create and situate your axes and labels to the left and bottom of the chart.
+* Create and situate axes and labels to the left and bottom of the chart.
 
+- - -
 
-### Bonus: Done to Impress the Boss
+![7-animated-scatter](Images/7-animated-scatter.gif)
 
-#### 1. More Data, More Dynamics
+### step 2 More Data, More Dynamics
+
+To include more demographics and more risk factors. Place additional labels in the scatter plot and give them click events so that users can decide which data to display. Animate the transitions for the circles' locations as well as the range of the axes. 
 
 I have included more demographics and more risk factors. 3 factors have been deployed for each axis.
 So users can check my charts by any x, y combination as their like.
 
 
-#### 2. Incorporate d3-tooltip effect added
- 
-Done! 
+### step 3 Incorporate d3-tip
 
-### Assessment
+ Enter tooltips have been implemented in their D3 graphics to reveal a specific element's data when the user hovers their cursor over the element. Add tooltips to the circles and display each tooltip with the data that the user has selected. Use the `d3-tip.js` plugin developed by [Justin Palmer](https://github.com/Caged).
 
-Trilogy Education Services © 2019. All Rights Reserved.
+![8-tooltip](Images/8-tooltip.gif)
+
+- - -
+
+
+
+
