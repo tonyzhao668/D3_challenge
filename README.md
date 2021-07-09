@@ -11,14 +11,17 @@ To find out the first story idea by sifting through information from the U.S. Ce
 
 The data set included is based on 2014 ACS 1-year estimates: [https://factfinder.census.gov/faces/nav/jsf/pages/searchresults.xhtml](https://factfinder.census.gov/faces/nav/jsf/pages/searchresults.xhtml).
 
-## The Task done:
+## Task done:
+
+### The website show link:
+
+[D3 Times](https://tonyzhao668.github.io/D3_challenge/)
 
 ### The finished HTML webpage visualization:
 
 ![D3 Times](Images/d3.gif)
 
 ### step 1:
-
 
 To create a scatter plot between two of the data variables such as `Healthcare vs. Poverty` or `Smokers vs. Age`.
 
@@ -37,6 +40,7 @@ To include more demographics and more risk factors. Place additional labels in t
 I have included more demographics and more risk factors. 3 factors have been deployed for each axis.
 So users can check my charts by any x, y combination as their like.
 
+_ _ _
 
 ### step 3 Incorporate d3-tip
 
