@@ -1,4 +1,4 @@
-# D3 - Data Journalism and D3
+# Data Journalism and D3
 
 Finished on 05/04/2021 by Tony Zhao
 
